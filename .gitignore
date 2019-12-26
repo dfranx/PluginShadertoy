@@ -6,3 +6,4 @@ Makefile
 bin/
 cmake_install.cmake
 copy.sh
+APIKey.h

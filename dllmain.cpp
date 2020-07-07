@@ -15,15 +15,14 @@
 #endif
 
 extern "C" {
-	FEXPORT st::Shadertoy* CreatePlugin(ImGuiContext* ctx) {
-		ImGui::SetCurrentContext(ctx);
+	FEXPORT st::Shadertoy* CreatePlugin() {
 		return new st::Shadertoy();
 	}
 	FEXPORT void DestroyPlugin(st::Shadertoy* ptr) {
 		delete ptr;
 	}
 	FEXPORT int GetPluginAPIVersion() {
-		return 2;
+		return 1;
 	}
 	FEXPORT int GetPluginVersion() {
 		return 1;

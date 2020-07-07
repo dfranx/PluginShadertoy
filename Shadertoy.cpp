@@ -498,7 +498,7 @@ void main() {
 						if (!res)
 							errMessage = "Shader either doesn't exist or doesn't have the PublicAPI flag set";
 						else
-							OpenProject(Project, UI, (outPath + "/project.sprj").c_str());
+							OpenProject(UI, (outPath + "/project.sprj").c_str());
 					}
 				}
 

@@ -28,7 +28,10 @@ make
 ## How to use
 This plugin requires at least SHADERed v1.3.5.
 
-Copy the .dll/.so file to `plugins/Shadertoy` folder in your SHADERed's installation directory
+Copy the .dll/.so file to `plugins/ShadertoyImport` folder in your SHADERed's installation directory
+
+After you start SHADERed, click on `File -> Import Shadertoy project`. Enter Shadertoy URL that contains
+the ID & choose a path where you want to save SHADERed project. Press `Save`.
 
 ## TODO
 - cubemaps

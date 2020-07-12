@@ -73,37 +73,55 @@ namespace st
 		virtual void Object_ShowContext(const char* type, void* data) { }
 
 		// pipeline item stuff
-		virtual bool PipelineItem_HasProperties(const char* type) { return 0; }
+		virtual bool PipelineItem_HasProperties(const char* type, void* data) { return 0; }
 		virtual void PipelineItem_ShowProperties(const char* type, void* data) { }
-		virtual bool PipelineItem_IsPickable(const char* type) { return 0; }
-		virtual bool PipelineItem_HasShaders(const char* type) { return 0; }
-		virtual void PipelineItem_OpenInEditor(void* ui, const char* type, void* data) { }
-		virtual bool PipelineItem_CanHaveChild(const char* type, ed::plugin::PipelineItemType itemType) { return 0; }
-		virtual int PipelineItem_GetInputLayoutSize(const char* itemName) { return 0; }
-		virtual void PipelineItem_GetInputLayoutItem(const char* itemName, int index, ed::plugin::InputLayoutItem& out) { }
+		virtual bool PipelineItem_IsPickable(const char* type, void* data) { return 0; }
+		virtual bool PipelineItem_HasShaders(const char* type, void* data) { return 0; }
+		virtual void PipelineItem_OpenInEditor(const char* type, void* data) { }
+		virtual bool PipelineItem_CanHaveChild(const char* type, void* data, ed::plugin::PipelineItemType itemType) { return 0; }
+		virtual int PipelineItem_GetInputLayoutSize(const char* type, void* data) { return 0; }
+		virtual void PipelineItem_GetInputLayoutItem(const char* type, void* data, int index, ed::plugin::InputLayoutItem& out) { }
 		virtual void PipelineItem_Remove(const char* itemName, const char* type, void* data) { }
 		virtual void PipelineItem_Rename(const char* oldName, const char* newName) { }
 		virtual void PipelineItem_AddChild(const char* owner, const char* name, ed::plugin::PipelineItemType type, void* data) { }
-		virtual bool PipelineItem_CanHaveChildren(const char* type) { return 0; }
+		virtual bool PipelineItem_CanHaveChildren(const char* type, void* data) { return 0; }
 		virtual void* PipelineItem_CopyData(const char* type, void* data) { return 0; }
 		virtual void PipelineItem_Execute(void* Owner, ed::plugin::PipelineItemType OwnerType, const char* type, void* data) { }
 		virtual void PipelineItem_Execute(const char* type, void* data, void* children, int count) { }
-		virtual void PipelineItem_GetWorldMatrix(void* data, float(&pMat)[16]) { }
+		virtual void PipelineItem_GetWorldMatrix(const char* type, void* data, float(&pMat)[16]) { }
 		virtual bool PipelineItem_Intersect(const char* type, void* data, const float* rayOrigin, const float* rayDir, float& hitDist) { return 0; }
-		virtual void PipelineItem_GetBoundingBox(void* data, float(&minPos)[3], float(&maxPos)[3]) { }
-		virtual bool PipelineItem_HasContext(const char* type) { return 0; }
+		virtual void PipelineItem_GetBoundingBox(const char* type, void* data, float(&minPos)[3], float(&maxPos)[3]) { }
+		virtual bool PipelineItem_HasContext(const char* type, void* data) { return 0; }
 		virtual void PipelineItem_ShowContext(const char* type, void* data) { }
 		virtual const char* PipelineItem_Export(const char* type, void* data) { return 0; }
 		virtual void* PipelineItem_Import(const char* ownerName, const char* name, const char* type, const char* argsString) { return 0; }
 		virtual void PipelineItem_MoveDown(void* ownerData, const char* ownerType, const char* itemName) { }
 		virtual void PipelineItem_MoveUp(void* ownerData, const char* ownerType, const char* itemName) { }
-		virtual void PipelineItem_ApplyGizmoTransform(void* data, float* transl, float* scale, float* rota) { }
-		virtual void PipelineItem_GetTransform(void* data, float* transl, float* scale, float* rota) { }
+		virtual void PipelineItem_ApplyGizmoTransform(const char* type, void* data, float* transl, float* scale, float* rota) { }
+		virtual void PipelineItem_GetTransform(const char* type, void* data, float* transl, float* scale, float* rota) { }
 		virtual void PipelineItem_DebugVertexExecute(void* Owner, ed::plugin::PipelineItemType OwnerType, const char* type, void* data, unsigned int colorVarLoc) { }
+		virtual int PipelineItem_DebugVertexExecute(const char* type, void* data, const char* childName, float rx, float ry, int vertexGroup) { return 0; }
 		virtual void PipelineItem_DebugInstanceExecute(void* Owner, ed::plugin::PipelineItemType OwnerType, const char* type, void* data, unsigned int colorVarLoc) { }
-		virtual unsigned int PipelineItem_GetVBO(void* data) { return 0; }
-		virtual unsigned int PipelineItem_GetVBOStride(void* data) { return 0; }
-		virtual bool PipelineItem_CanChangeVariables(void* data) { return 0; }
+		virtual int PipelineItem_DebugInstanceExecute(const char* type, void* data, const char* childName, float rx, float ry, int vertexGroup) { return 0; }
+		virtual unsigned int PipelineItem_GetVBO(const char* type, void* data) { return 0; }
+		virtual unsigned int PipelineItem_GetVBOStride(const char* type, void* data) { return 0; }
+		virtual bool PipelineItem_CanChangeVariables(const char* type, void* data) { return 0; }
+		virtual bool PipelineItem_IsDebuggable(const char* type, void* data) { return 0; }
+		virtual bool PipelineItem_IsStageDebuggable(const char* type, void* data, ed::plugin::ShaderStage stage) { return 0; }
+		virtual void PipelineItem_DebugExecute(const char* type, void* data, void* children, int count, int* debugID) { }
+		virtual unsigned int PipelineItem_GetTopology(const char* type, void* data) { return 0; }
+		virtual unsigned int PipelineItem_GetVariableCount(const char* type, void* data) { return 0; }
+		virtual const char* PipelineItem_GetVariableName(const char* type, void* data, unsigned int variable) { return 0; }
+		virtual ed::plugin::VariableType PipelineItem_GetVariableType(const char* type, void* data, unsigned int variable) { return ed::plugin::VariableType::Float1; }
+		virtual float PipelineItem_GetVariableValueFloat(const char* type, void* data, unsigned int variable, int col, int row) { return 0; }
+		virtual int PipelineItem_GetVariableValueInteger(const char* type, void* data, unsigned int variable, int col) { return 0; }
+		virtual bool PipelineItem_GetVariableValueBoolean(const char* type, void* data, unsigned int variable, int col) { return 0; }
+		virtual unsigned int PipelineItem_GetSPIRVSize(const char* type, void* data, ed::plugin::ShaderStage stage) { return 0; }
+		virtual unsigned int* PipelineItem_GetSPIRV(const char* type, void* data, ed::plugin::ShaderStage stage) { return 0; }
+		virtual void PipelineItem_DebugPrepareVariables(const char* type, void* data, const char* name) { }
+		virtual bool PipelineItem_DebugUsesCustomTextures(const char* type, void* data) { return 0; }
+		virtual unsigned int PipelineItem_DebugGetTexture(const char* type, void* data, int loc, const char* variableName) { return 0; }
+		virtual void PipelineItem_DebugGetTextureSize(const char* type, void* data, int loc, const char* variableName, int& x, int& y, int& z) { }
 
 		// options
 		virtual bool Options_HasSection() { return 0; }
@@ -119,6 +137,8 @@ namespace st
 		virtual const unsigned int* CustomLanguage_CompileToSPIRV(int langID, const char* src, size_t src_len, ed::plugin::ShaderStage stage, const char* entry, ed::plugin::ShaderMacro* macros, size_t macroCount, size_t* spv_length, bool* compiled) { return 0; }
 		virtual const char* CustomLanguage_ProcessGeneratedGLSL(int langID, const char* src) { return 0; }
 		virtual bool CustomLanguage_SupportsAutoUniforms(int langID) { return 0; }
+		virtual bool CustomLanguage_IsDebuggable(int langID) { return 0; }
+		virtual const char* CustomLanguage_GetDefaultExtension(int langID) { return 0; }
 
 		// language text editor
 		virtual bool ShaderEditor_Supports(int langID) { return 0; }

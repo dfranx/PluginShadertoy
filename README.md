@@ -1,5 +1,5 @@
 # PluginShadertoy
-SHADERed plugin that simplifies the process of loading Shadertoy projects.
+SHADERed plugin that simplifies the process of porting your Shadertoy projects.
 
 ![Screenshot](./screen.gif)
 
@@ -7,12 +7,11 @@ SHADERed plugin that simplifies the process of loading Shadertoy projects.
 Clone the project:
 ```bash
 git clone https://github.com/dfranx/PluginShadertoy.git
-git submodule init
-git submodule update
+git submodule update --init
 ```
 
 ### Linux
-1. Install OpenSSL (libcrypro & libssl).
+1. Install OpenSSL (libcrypto & libssl).
 
 2. Build:
 ```bash
@@ -27,11 +26,10 @@ make
 4. Open the .sln and build the project!
 
 ## How to use
-This plugin requires SHADERed v1.3 minimum.
+This plugin requires at least SHADERed v1.3.5.
 
-Copy the .dll/.so file to plugins/Shadertoy in your SHADERed installation directory
+Copy the .dll/.so file to `plugins/Shadertoy` folder in your SHADERed's installation directory
 
 ## TODO
 - cubemaps
 - audio shaders
-- texture properties

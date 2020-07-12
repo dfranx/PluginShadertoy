@@ -159,8 +159,8 @@ namespace st
 		virtual bool ShaderEditor_HasStats(int langID, int editorID) { return 0; }
 
 		// code editor
-		virtual void CodeEditor_SaveItem(const char* src, int srcLen, int id) { }
-		virtual void CodeEditor_CloseItem(int id) { }
+		virtual void CodeEditor_SaveItem(const char* src, int srcLen, const char* path) { }
+		virtual void CodeEditor_CloseItem(const char* path) { }
 		virtual bool LanguageDefinition_Exists(int id) { return 0; }
 		virtual int LanguageDefinition_GetKeywordCount(int id) { return 0; }
 		virtual const char** LanguageDefinition_GetKeywords(int id) { return 0; }

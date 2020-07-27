@@ -437,6 +437,12 @@ void main() {
 
 	bool Shadertoy::Init(bool isWeb, int sedVersion) {
 		m_isPopupOpened = false;
+
+		if (sedVersion == 1003005)
+			m_hostVersion = 1;
+		else
+			m_hostVersion = GetHostIPluginMaxVersion();
+
 		return true;
 	}
 	void Shadertoy::InitUI(void* ctx)
@@ -465,11 +471,14 @@ void main() {
 			ImGui::PopItemFlag();
 			ImGui::PopItemWidth();
 			ImGui::SameLine();
-			if (ImGui::Button("...##pui_vsbtn", ImVec2(-1, 0))) {
-				char tempPath[MY_PATH_LENGTH];
-				bool success = GetOpenDirectoryDialog(tempPath);
-				if (success)
-					strcpy(m_path, tempPath);
+			if (ImGui::Button("...##pui_vsbtn", ImVec2(-1, 0)) && m_hostVersion >= 2)
+				ImGuiDirectoryDialogOpen("ShadertoyLocationDlg", "Save location");
+
+			if (m_hostVersion >= 2 && ImGuiFileDialogIsDone("ShadertoyLocationDlg")) {
+				if (ImGuiFileDialogGetResult())
+					ImGuiFileDialogGetPath(m_path);
+
+				ImGuiFileDialogClose("ShadertoyLocationDlg");
 			}
 
 

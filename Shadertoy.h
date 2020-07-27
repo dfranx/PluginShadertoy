@@ -7,7 +7,7 @@
 
 namespace st
 {
-	class Shadertoy : public ed::IPlugin1
+	class Shadertoy : public ed::IPlugin2
 	{
 	public:
 		virtual bool Init(bool isWeb, int sedVersion);
@@ -198,10 +198,24 @@ namespace st
 		virtual void HandleApplicationEvent(ed::plugin::ApplicationEvent event, void* data1, void* data2) { }
 		virtual void HandleNotification(int id) { }
 
+		// IPlugin2
+		virtual bool PipelineItem_SupportsImmediateMode(const char* type, void* data, ed::plugin::ShaderStage stage) { return false; }
+		virtual bool PipelineItem_HasCustomImmediateModeCompiler(const char* type, void* data, ed::plugin::ShaderStage stage) { return false; }
+		virtual bool PipelineItem_ImmediateModeCompile(const char* type, void* data, ed::plugin::ShaderStage stage, const char* expression) { return false; }
+
+		// Immediate mode
+		virtual unsigned int ImmediateMode_GetSPIRVSize() { return 0; }
+		virtual unsigned int* ImmediateMode_GetSPIRV() { return 0; }
+		virtual unsigned int ImmediateMode_GetVariableCount() { return 0; }
+		virtual const char* ImmediateMode_GetVariableName(unsigned int index) { return 0; }
+		virtual int ImmediateMode_GetResultID() { return 0; }
+
 	private:
 		bool m_errorOccured;
 		std::string m_error;
 		char m_link[256], m_path[MY_PATH_LENGTH];
 		bool m_isPopupOpened;
+
+		int m_hostVersion;
 	};
 }
